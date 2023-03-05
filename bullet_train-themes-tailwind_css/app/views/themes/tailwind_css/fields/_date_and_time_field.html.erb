@@ -10,8 +10,8 @@ options = options.merge({ data: {'fields--date-target': 'field' }})
 other_options ||= {}
 %>
 
-<%= render 'shared/fields/field', form: form, method: method, options: options, other_options: other_options do %>
-  <% content_for :field do %>
+<%= render 'shared/fields/field', form: form, method: method, options: options, other_options: other_options do |field| %>
+  <% field.field do %>
     <div class="date-input relative" data-controller="fields--date" data-fields--date-include-time-value="true" data-fields--date-default-time-zones-value="<%= "[\"#{current_user.current_team.time_zone}\",\"#{current_user.time_zone}\"]" %>">
       <%= form.text_field method, options %>
       <% unless options[:disabled] %>

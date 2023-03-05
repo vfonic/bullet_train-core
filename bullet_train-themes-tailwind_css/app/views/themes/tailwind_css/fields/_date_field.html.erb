@@ -13,8 +13,8 @@ other_options ||= {}
 
 %>
 
-<%= render 'shared/fields/field', form: form, method: method, options: options, other_options: other_options do %>
-  <% content_for :field do %>
+<%= render 'shared/fields/field', form: form, method: method, options: options, other_options: other_options do |field| %>
+  <% field.field do %>
     <div class="date-input relative" data-controller="<%= stimulus_controller %>">
       <%= form.text_field method, options %>
       <% unless options[:disabled] %>
