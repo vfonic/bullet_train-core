@@ -1638,8 +1638,18 @@ class Scaffolding::Transformer
 
       if top_level_model?
         icon_name = nil
-        if cli_options["sidebar"].present?
-          icon_name = cli_options["sidebar"]
+        if cli_options["navbar"].present?
+          icon_name = if cli_options["navbar"].match?(/^ti/)
+            "ti #{cli_options["navbar"]}"
+          elsif cli_options["navbar"].match?(/^fa/)
+            "fal #{cli_options["navbar"]}"
+          else
+            puts ""
+            puts "'#{cli_options["navbar"]}' is not a valid icon.".red
+            puts "Please refer to the Themify or Font Awesome documentation and pass the value like so:"
+            puts "--navbar=\"ti-world\""
+            exit
+          end
         else
           puts ""
           puts "Hey, models that are scoped directly off of a Team (or nothing) are eligible to be added to the sidebar."
