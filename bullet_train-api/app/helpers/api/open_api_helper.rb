@@ -35,7 +35,7 @@ module Api
       output = Scaffolding::Transformer.new(model.name, [parent&.name]).transform_string(output).html_safe
 
       # There are some placeholders specific to this method that we still need to transform.
-      model_symbol = model.name.underscore.tr("/", "_")
+      model_symbol = model.name.underscore.tr("/", "_").to_sym
 
       if (get_example = FactoryBot.get_example(model_symbol, version: @version))
         output.gsub!("🚅 get_example", get_example)
